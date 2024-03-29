@@ -1,6 +1,6 @@
 # jest-test
 
-### Install Jest 
+### 1. Install Jest 
 
 初始化 node.js 專案
 
@@ -22,11 +22,11 @@ package.json：
 }
 ```
 
-### 安裝 jest
+### 2. 安裝 jest
 
 `npm install --save-dev jest`
 
-### 安裝 babel
+### 3. 安裝 babel
 
 安裝 babel，才能將 ES6 module 語法轉換成 node.js 能夠理解的 require/module.exports 格式
 
@@ -34,7 +34,7 @@ package.json：
 
 `touch babel.config.js`
 
-#### 新增 babel.config.js ，設置如下
+### 4. 新增 babel.config.js ，設置如下
 
 ```
 // babel.config.js
