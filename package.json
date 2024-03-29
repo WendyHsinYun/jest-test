@@ -1,0 +1,16 @@
+{
+  "name": "jest-testing",
+  "version": "1.0.0",
+  "description": "jest testing",
+  "main": "jest.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "hsinyunChang",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3",
+    "babel-jest": "^29.7.0"
+  }
+}
