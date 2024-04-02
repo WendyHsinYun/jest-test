@@ -1,29 +1,52 @@
 export default class Model {
-  constructor(value = []){
+  constructor(options = {}){ 
+    const data = options.data || []; 
+    delete options.data;
     this.$collection = [];
-
-    if(value.length > 0){
-      this.record(value);
-    }
+    this.$options = Object.assign({primaryKey: 'id'}, options); 
+    if(data.length > 0) this.record(data);
   }
 
-  record(record) {
-    this.$collection.push(...record);
-    return this.$collection;
+  record(data){ 
+    const mappedRecord = data.map(entry => {
+      if(entry[this.$options.primaryKey]){  
+        return entry;
+      }else{
+        entry[this.$options.primaryKey] = Date.now() 
+        return entry;
+      }    
+    })
+    this.$collection.push(...mappedRecord);
   }
 
   all(){
-    return this.$collection;
+    return this.$collection.map(entry => Object.assign({}, entry));
+  }
+  
+  update(key, entry){
+    const index = this.$collection.findIndex(entry => entry[this.$options.primaryKey] === key)
+    
+    if(index >= 0){
+      this.$collection.splice(
+        index, 
+        1, 
+        Object.assign(this.$collection[index], entry))
+      }else{
+        return false
+      }
+    }
+    
+  find(key){ 
+    const entry = this.$collection.find(record => record[this.$options.primaryKey] === key) 
+    return entry ? Object.assign({}, entry) : null
   }
 
-  find(id){ 
-    const found = this.$collection.find(record => record.id === id)
-    return found 
-  }
+  remove(key){
+    const index = this.$collection.findIndex(entry => entry[this.$options.primaryKey] === key)
 
-  update(id, newName){
-    const index = this.$collection.findIndex(record => record.id === id)
-    this.$collection[index].name = newName
-    return this.$collection[index]
+    if(index >= 0){
+      this.$collection.splice(index, 1)
+    }
+
   }
 }
