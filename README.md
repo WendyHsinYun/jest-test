@@ -1,7 +1,4 @@
 # jest-test
-<<<<<<< dev
-# jest-test
-=======
 
 ### 1. Install Jest 
 
@@ -45,4 +42,3 @@ module.exports = {
   presets: [['@babel/preset-env', {targets: {node: 'current'}}]],
 };
 ```
->>>>>>> main
